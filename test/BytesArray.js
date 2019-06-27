@@ -7,11 +7,15 @@ contract("BytesArray", () => {
     contract = await artifact.new();
   });
 
-  it("testPublic should not fail", async () => {
-    await contract.testPublic();
+  it("testPublic fails", async () => {
+    await contract.publicMethod();
   });
 
-  it("testPublicWithData should not fail", async () => {
-    await contract.testPublic(web3.utils.asciiToHex("Testing"));
+  it("testPublicWithData works", async () => {
+    await contract.publicMethodWithData(web3.utils.asciiToHex("Testing"));
+  });
+
+  it("testPublicWithHop fails", async () => {
+    await contract.publicMethodWithHop(web3.utils.asciiToHex("Testing"));
   });
 });

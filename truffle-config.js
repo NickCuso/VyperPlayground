@@ -1,5 +1,5 @@
 module.exports = {
-  networks: 
+  networks: {
     development: {
       gas: 6721974,
       host: "127.0.0.1",
