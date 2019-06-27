@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  test:
+    context: docker-hub-credentials
+    docker:
+      - image: circleci/python
+      - image: trufflesuite/ganache-cli
+        command: ganache-cli -e 1000000 -a 100
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - run:
+          command: |
+            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            sudo pip install vyper
+
+      - restore_cache:
+          keys:
+            - v2-{{ checksum "package.json" }}
+      - run: rm -Rf node_modules/websocket
+      - run: npm i
+      - save_cache:
+          paths:
+            - node_modules
+            - package-lock.json
+          key: v2-{{ checksum "package.json" }}
+
+      - run: npm run test
+      - run: npm run lintNoFix
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test
