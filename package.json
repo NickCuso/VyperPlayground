@@ -1,5 +1,5 @@
 {
-  "name": "Vyper Playground",
+  "name": "vyper-playground",
   "scripts": {
     "build": "npm run compile",
     "compile": "truffle compile --all",
