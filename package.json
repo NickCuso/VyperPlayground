@@ -21,7 +21,7 @@
     "openzeppelin-test-helpers": "0.4.0",
     "papaparse": "5.0.0",
     "tpl-contracts": "1.1.2",
-    "truffle": "5.0.21"
+    "truffle": "5.3.10"
   },
   "devDependencies": {
     "chai": "4.2.0",
